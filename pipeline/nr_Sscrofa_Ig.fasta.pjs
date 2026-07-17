@@ -1,0 +1,24 @@
+{
+  "version": "1.2",
+  "dbname": "nr_Sscrofa_Ig.fasta",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "nr_Sscrofa_Ig.fasta",
+  "number-of-letters": 271876,
+  "number-of-sequences": 1739,
+  "last-updated": "2025-04-17T18:35:00",
+  "number-of-volumes": 1,
+  "bytes-total": 763548,
+  "bytes-to-cache": 287640,
+  "files": [
+    "nr_Sscrofa_Ig.fasta.pdb",
+    "nr_Sscrofa_Ig.fasta.phr",
+    "nr_Sscrofa_Ig.fasta.pin",
+    "nr_Sscrofa_Ig.fasta.pog",
+    "nr_Sscrofa_Ig.fasta.pos",
+    "nr_Sscrofa_Ig.fasta.pot",
+    "nr_Sscrofa_Ig.fasta.psq",
+    "nr_Sscrofa_Ig.fasta.ptf",
+    "nr_Sscrofa_Ig.fasta.pto"
+  ]
+}
