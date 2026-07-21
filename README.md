@@ -50,7 +50,8 @@ To reduce computation time when running following BLAST analyses, generating a c
   - Calls python script make_blastDB.py
     - NOTE: loads BLAST nr database file staticly to "db_fi" variable on line 10. Adjust as needed to point to your BLAST NR file location.
     - NOTE: species and keywords are staticly defined on lines 11 and 12. Redefine as needed for your use-case.
-    - NOTE: outputs static database name, currently set to "nr_Sscrofa_Ig.fasta" on line 22. This is used statically by the next command in make_blastdb.sh. Adjust as preffered. [OTHER SCRIPTS THAT USE THE DB FILE]
+    - NOTE: outputs static database name, currently set to "nr_Sscrofa_Ig.fasta" on line 22. This is used statically by the next command in make_blastdb.sh. Adjust as preffered.
+      - [OTHER SCRIPTS THAT USE THE DB FILE] contig_synGenome_generator_v2.py , bt2_array.slurm, merge_genomes.py, gff2SAF.py, 
 ### Main step: construct synthetic genome
 - run syn_genome_generator.sh
 - requires sample.txt file
@@ -61,7 +62,36 @@ To reduce computation time when running following BLAST analyses, generating a c
 - Outputs a synthetic genome fasta file and a genome annotation (gff) file.
 
 ## Step 5: Align reads to synthetic genome.
+- run index_syn_genome.sh
+  - NOTE: requires update with synthetic genome file name on line 16.
+  - NOTE: settings are optimized for following alignment step. Maximum density is recommended.
+- run bt2_array.slurm
+  - Launches 6 job array using 16 CPU and 16G RAM per job. Given longer compute time, also sends emails for job completion, requiring update.
+  - To reduce computation times, read and genome files are copied over to the local scratch. Update this this as needed to run on your system.
+  - genome root name and location variables on lines 32 & 33 need to be updated to user genome_name & genome_location
 
 ## Optional step: Merging alignments across sample sets
+In the case of appending new samples to a sampleset, or if a comparison between datasets wants to be done, run the following steps to update and merge alignments. Perform this step after running previous steps on new samples and alignment of old samples to synthetic genome derived from new samples. 
+- Merge genome files
+  - run merge_genomes.py
+    - expected call: python merge_genomes.py [GENOMES_ROOTNAMES] output_name
+    - outputs a merged fasta and annotation file. Each genome becomes a separate fasta entry, or "synthetic chromosome"
+- Merge BAM files 
+  - make bams2merge.txt sample file
+    - each line, pair of files to merge
+    - run mergeBAMs.slurm
+      - assumes bam files have different chromosome numbers (essential for merging)
+        - if not, run commented out code in .slurm file (lines 27-34). Updates chromosome ID info
+      - assumes bam files are sorted
 
 ## Step 6: Quantification of of contig expression and final output tables
+### Prepatory step: generate SAF formatted genome annotation file
+- run gff2SAF.sh
+  - requires update to relevant genome file rootname
+  - runs gff2SAF.py
+### main step: Quantifying expression 
+- run featureCounts.sh
+  - Calculates read counts for all samples
+  - launches 6 job array using 16 CPUs and 16G of RAM per job.
+  - requires copying files to local scratch, update on line 19
+  -  
