@@ -111,5 +111,5 @@ Coverage-adjusted CPM is CPM; but if the contig is not covered in a single area 
 
 # Downstream analyses
 Contigs can be further characterized using IgBLAST and a custom pig VDJ database derived from IMGT.\
-Setting up custom IgBLAST databases can be found here: https://ncbi.github.io/igblast/cook/How-to-set-up.html
+Setting up custom IgBLAST databases can be found here: https://ncbi.github.io/igblast/cook/How-to-set-up.html\
 The IgBLAST commands and the custom pig VDJ files are found in the IgBLAST folder.
