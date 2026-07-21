@@ -28,7 +28,7 @@ For questions, feel free to reach out at: jquennev@gmail.com
 
 ## Step 1: Read quality control
 - run fastqc.sh script
-  - Generates read qualtiy reports for all samples in "original_samples" folder. Use to remove samples from analysis and control expectations for read trimming.
+  - Generates read qualtiy reports for all samples in "original_samples" folder. Use reports to remove samples from analysis and guage expectations for read trimming.
 
 ## Step 2: Read trimming
 - move "nextera_adaptor.txt" file to "original_samples" folder.
@@ -43,5 +43,13 @@ For questions, feel free to reach out at: jquennev@gmail.com
 
 ## Step 4: Generate synthetic genome.
 ### Preparation step: Generate custom BLAST database
-To reduce computation time when running following BLAST analyses, generating a custom BLAST database containing only your species & keywords (example: "antibody", "IGH", "immunoglobin", etc...) will significantly reduce computation times. Only needs to be run once per species and keyword pairing.\
+To reduce computation time when running following BLAST analyses, generating a custom BLAST database containing only your species & keywords (example: "antibody", "IGH", "immunoglobin", etc...) will significantly reduce computation times. Only needs to be run once per species and keyword pairing.
 - run make_blastDB.sh
+  - runs on one 1 CPU, 16G RAM.
+  - provides access to ncbi database files using ncbi-db
+  - Calls python script make_blastDB.py
+    - NOTE: loads BLAST nr database file staticly to "db_fi" variable on line 10. Adjust as needed to point to your BLAST NR file location.
+    - NOTE: outputs static database name, currently set to "nr_Sscrofa_Ig.fasta" on line 22. This is used statically by the next command in make_blastdb.sh. Adjust as preffered. [OTHER SCRIPTS THAT USE THE DB FILE]
+### Main step: construct synthetic genome
+- run syn_genome_generator.sh
+- 
