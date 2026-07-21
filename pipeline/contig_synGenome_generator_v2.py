@@ -10,23 +10,18 @@ import random
 import sys
 import subprocess
 
+# define custom blast database file location
+blast_db_fi='nr_Sscrofa_Ig.fasta'
+
 # processes trinity output rather than inchworm
 di = 'spades_'
-fis =[
-    '71_0dpi_S19',
-    '71_14dpi_S18',
-    '71_21dpi_S36',
-    '71_7dpc_S1',
-    '78_0dpc_S20',
-    '78_7dpc_S38'
-]
 
 fis = sys.argv[1:-1]
 out_fi_name = sys.argv[-1]
 print('processing:', fis)
 print('outputting to:', out_fi_name)
-intended_product_size = 361
-size_threshold = 0.4
+intended_product_size = 361 # update as needed
+size_threshold = 0.4 # update as needed
 min_prod_size = intended_product_size*(1-size_threshold)
 max_prod_size = intended_product_size*(1+size_threshold)
 seqs = {}
@@ -73,7 +68,7 @@ def allFrameTranslate(seq):
 # test code
 #print(allFrameTranslate('TGCCACCATGAAGAAGACATAGCGTTTTTGCTCGCCTTGATGTTTGTTTTTTCAATAGC'))
 
-def BLASTcall(query, db='nr_Sscrofa_Ig.fasta'):
+def BLASTcall(query, db=blast_db_fi):
     # calls blastp and outputs xml file
     # blastp -query test.fasta -db nr_Sscrofa.fasta -out blastP2.xml -outfmt 5
     # print('blasting', query)
