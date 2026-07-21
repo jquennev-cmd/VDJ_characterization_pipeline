@@ -58,4 +58,10 @@ To reduce computation time when running following BLAST analyses, generating a c
   - NOTE: contig_synGenome_generator_v2.py requires manual update for BLAST db file. This is on line 14, "blast_db_fi" variable. Update if BLAST db file was changed.
   - NOTE: contig_synGenome_generator_v2.py contains static variables for defining intended contig size and size threshold variables, defined on lines 16 and 17. Update as needed for your use-case.
   - NOTE: synthetic genome root name is defined in syn_genome_generator.sh as the last variable in the contig_synGenome_generator_v2.py call (currently "newSamples"). Update as preferred.
-- Outputs a synthetic genome fasta file and a genome annotation (gff) file. 
+- Outputs a synthetic genome fasta file and a genome annotation (gff) file.
+
+## Step 5: Align reads to synthetic genome.
+
+## Optional step: Merging alignments across sample sets
+
+## Step 6: Quantification of of contig expression and final output tables
