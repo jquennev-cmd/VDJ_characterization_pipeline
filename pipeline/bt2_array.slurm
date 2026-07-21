@@ -2,7 +2,7 @@
 #SBATCH --job-name=N2O_bt2_array
 #SBATCH --output=logs/bt2_array_%A_%a.out
 #SBATCH --error=logs/bt2_array_%A_%a.err
-#SBATCH --mail-user=jordanq@illinois.edu
+#SBATCH --mail-user= INSERT EMAIL HERE
 #SBATCH --mail-type=END,FAIL
 #SBATCH --array=0-6           # Adjust based on number of samples. 0 is first sample. add %[#] is max concorant jobs
 #SBATCH --nodes=1
