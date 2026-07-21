@@ -1,5 +1,6 @@
 # VDJ construction and characterization pipeline
-Pipeline for generating VDJ sequences from NGS data in any species. Best run on a dedicated compute cluster. 
+Pipeline for generating VDJ sequences from NGS data in any species. Best run on a dedicated compute cluster, but can be run on other achitecture with adjustment. Note: pipeline is written to run on a SLURM-based cluster.\
+For questions, feel free to reach out at: jquennev@gmail.com
 
 ## Required softwares:
   ### Stand-alone tools:
@@ -14,4 +15,33 @@ Pipeline for generating VDJ sequences from NGS data in any species. Best run on 
    - Python (v3.10): used for synthetic genome construction, contig expression quantification, other custom scripts 
      - Biopython (v1.76)
      - Pandas (v2.2.0)
-    
+
+## Step 0: Prepare working directory
+- Install all required softwares.
+- Make 'logs' folder in working_directory.
+- Copy read files to working_directory/original_samples.
+  - Note: all scripts use "original_samples" as directory name containing original sample read files.
+- Make samples.txt file
+  - In working_directory, make a text file of sample root names, one sample per line.
+  - Used by steps 3 and onward for defining samples and subsequent files.
+- Copy all script files in github pipeline folder to working_directory  
+
+## Step 1: Read quality control
+- run fastqc.sh script
+  - Generates read qualtiy reports for all samples in "original_samples" folder. Use to remove samples from analysis and control expectations for read trimming.
+
+## Step 2: Read trimming
+- move "nextera_adaptor.txt" file to "original_samples" folder.
+  - contains adaptor sequences used for samples library prep. Update with your own sample library's adaptor sequences.
+- run trim_array.slurm
+  - runs trimmomatic in parallel to remove adaptor sequences and low quality read pairs.
+  - Currently set up to run 6 jobs with 4 CPUs and 8G of RAM per job. Adjust to your preferences.
+
+## Step 3: Generate kmer contigs
+- run spades.slurm
+  - runs SPADes as a 6 job array, 16 CPUs and 40G of RAM per job. These resources are more than sufficient for all processed samples, with only high-diversity samples requiring >10G RAM. Adjust as needed.
+
+## Step 4: Generate synthetic genome.
+### Preparation step: Generate custom BLAST database
+To reduce computation time when running following BLAST analyses, generating a custom BLAST database containing only your species & keywords (example: "antibody", "IGH", "immunoglobin", etc...) will significantly reduce computation times. Only needs to be run once per species and keyword pairing.\
+- run make_blastDB.sh
