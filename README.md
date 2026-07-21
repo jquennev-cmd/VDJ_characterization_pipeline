@@ -35,11 +35,11 @@ For questions, feel free to reach out at: jquennev@gmail.com
   - contains adaptor sequences used for samples library prep. Update with your own sample library's adaptor sequences.
 - run trim_array.slurm
   - runs trimmomatic in parallel to remove adaptor sequences and low quality read pairs.
-  - Currently set up to run 6 jobs with 4 CPUs and 8G of RAM per job. Adjust to your preferences.
+  - Currently set up to run 7 jobs with 4 CPUs and 8G of RAM per job. Adjust to your preferences.
 
 ## Step 3: Generate kmer contigs
 - run spades.slurm
-  - runs SPADes as a 6 job array, 16 CPUs and 40G of RAM per job. These resources are more than sufficient for all processed samples, with only high-diversity samples requiring >10G RAM. Adjust as needed.
+  - runs SPADes as a 7 job array, 16 CPUs and 40G of RAM per job. These resources are more than sufficient for all processed samples, with only high-diversity samples requiring >10G RAM. Adjust as needed.
 
 ## Step 4: Generate synthetic genome.
 ### Preparation step: Generate custom BLAST database
@@ -61,12 +61,12 @@ To reduce computation time when running following BLAST analyses, generating a c
   - NOTE: synthetic genome root name is defined in syn_genome_generator.sh as the last variable in the contig_synGenome_generator_v2.py call (currently "newSamples"). Update as preferred.
 - Outputs a synthetic genome fasta file and a genome annotation (gff) file.
 
-## Step 5: Align reads to synthetic genome.
+## Step 5: Align reads to synthetic genome
 - run index_syn_genome.sh
   - NOTE: requires update with synthetic genome file name on line 16.
   - NOTE: settings are optimized for following alignment step. Maximum density is recommended.
 - run bt2_array.slurm
-  - Launches 6 job array using 16 CPU and 16G RAM per job. Given longer compute time, also sends emails for job completion, requiring update.
+  - Launches 7 job array using 16 CPU and 16G RAM per job. Given longer compute time, also sends emails for job completion, requiring update.
   - To reduce computation times, read and genome files are copied over to the local scratch. Update this this as needed to run on your system.
   - genome root name and location variables on lines 32 & 33 need to be updated to user genome_name & genome_location
 
@@ -92,6 +92,7 @@ In the case of appending new samples to a sampleset, or if a comparison between 
 ### main step: Quantifying expression 
 - run featureCounts.sh
   - Calculates read counts for all samples
-  - launches 6 job array using 16 CPUs and 16G of RAM per job.
+  - launches 7 job array using 16 CPUs and 16G of RAM per job.
   - requires copying files to local scratch, update on line 19
+  -  requires updating line 24 to correct SAF file, generated in prepatory step
   -  
