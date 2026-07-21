@@ -15,7 +15,7 @@ genome=[INSERT GENOME ANNOTATION FILE NAME HERE]
 echo "${samples[@]}"
 
 py_cmd="process_bam_coverage.py $genome ${samples[@]}"
-py_cmd2="process_bam_expression.py readCounts" 
+py_cmd2="process_bam_expression.py readCounts $genome ${samples[@]}" 
 echo $py_cmd
 python $py_cmd
 echo $py_cmd2
