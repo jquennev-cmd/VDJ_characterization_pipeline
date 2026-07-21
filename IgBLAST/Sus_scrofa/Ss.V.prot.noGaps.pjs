@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "Ss.V.prot.noGaps",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": ".\\Ss.V.prot.noGaps.fa",
+  "number-of-letters": 6344,
+  "number-of-sequences": 65,
+  "last-updated": "2025-09-18T13:23:00",
+  "number-of-volumes": 1,
+  "bytes-total": 2018203,
+  "bytes-to-cache": 7046,
+  "files": [
+    "Ss.V.prot.noGaps.pdb",
+    "Ss.V.prot.noGaps.phr",
+    "Ss.V.prot.noGaps.pin",
+    "Ss.V.prot.noGaps.pot",
+    "Ss.V.prot.noGaps.psq",
+    "Ss.V.prot.noGaps.ptf",
+    "Ss.V.prot.noGaps.pto"
+  ]
+}
