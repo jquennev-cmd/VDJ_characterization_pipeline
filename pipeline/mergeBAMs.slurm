@@ -2,7 +2,7 @@
 #SBATCH --job-name=bamMerge_array
 #SBATCH --output=logs/bamMerge_array_%A_%a.out
 #SBATCH --error=logs/bamMerge_array_%A_%a.err
-#SBATCH --mail-user=jordanq@illinois.edu
+#SBATCH --mail-user= INSERT EMAIL HERE
 #SBATCH --mail-type=END,FAIL
 #SBATCH --array=0-3           # Adjust based on number of samples. 0 is first sample. add %[#] is max concorant jobs
 #SBATCH --nodes=1
@@ -33,7 +33,6 @@ echo ${samples[@]}
 #     ((i++))
 #     done
 
-##### note this code has not been tested.
 ##### End of chromosome ID updater section
 
 ##### start of bam merge section 
