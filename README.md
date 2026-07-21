@@ -90,9 +90,26 @@ In the case of appending new samples to a sampleset, or if a comparison between 
   - requires update to relevant genome file rootname
   - runs gff2SAF.py
 ### main step: Quantifying expression 
+- prepare FC_samplelist.txt file
+  - text file containing .bam files to be quantified, 1 file per line.
 - run featureCounts.sh
   - Calculates read counts for all samples
   - launches 7 job array using 16 CPUs and 16G of RAM per job.
   - requires copying files to local scratch, update on line 19
-  -  requires updating line 24 to correct SAF file, generated in prepatory step
-  -  
+  - requires updating line 24 to correct SAF file, generated in prepatory step
+- run process_bams.sh
+  - update script with samples to be processed and genome annotation file for quantification, on lines 12 and 13
+  - runs process_bam_coverage.py and process_bam_expression.py
+    - in process_bam_coverage.py, there are 2 variables for defining coverage regions when calculating coverage_adjusted CPM.
+      - max_allowed_coverage_segments = 1
+      - percent_cov_threshold = 0.8
+      - change these at your discretion. these were optimized for VDJ contig coverage settings.
+
+# Final output
+Final output of the pipeline is a table of VDJ-like contigs, their nucleotide sequence, best amino acid sequence, their expression calculated in CPM, and their expression in coverage-adjusted CPM\
+Coverage-adjusted CPM is CPM; but if the contig is not covered in a single area within the contig (within a predefined threshold), the expression is converted to 0. This is because we only want extremely well covered contigs for further analyses. Those with multiple blocks of coverage (or gaps in coverage) should be discarded. 
+
+# Downstream analyses
+Contigs can be further characterized using IgBLAST and a custom pig VDJ database derived from IMGT.\
+Setting up custom IgBLAST databases can be found here: https://ncbi.github.io/igblast/cook/How-to-set-up.html
+The IgBLAST commands and the custom pig VDJ files are found in the IgBLAST folder.
