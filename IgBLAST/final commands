@@ -1,0 +1,16 @@
+command for BLAST text output:
+.\bin\igblastn.exe -germline_db_V .\database\Sus_scrofa\V.Ss.imgtGapped.fa -germline_db_J .\database\Sus_scrofa\J.Ss.imgtGapped.fa -germline_db_D .\database\Sus_scrofa\D.Ss.imgtGappedCleaned.fa -domain_system imgt -auxiliary_data .\optional_file\pig_gl.aux -query .\originalSamples_merged_allExpressed.fa -show_translation -outfmt 3 -out originalSamples.blast
+
+command for BLAST tab output:
+.\bin\igblastn.exe -germline_db_V .\database\Sus_scrofa\V.Ss.imgtGapped.fa -germline_db_J .\database\Sus_scrofa\J.Ss.imgtGapped.fa -germline_db_D .\database\Sus_scrofa\D.Ss.imgtGappedCleaned.fa -domain_system imgt -auxiliary_data .\optional_file\pig_gl.aux -query .\originalSamples_merged_allExpressed.fa -show_translation -outfmt 19 -out originalSamples.tab
+
+note, need the pig_gl.aux file. Human definitions for FR1, FR2, FR3, CDR1, CDR2 are fine for pig.
+
+makedb commands
+for V prot database
+.\bin\makeblastdb.exe -in .\database\Sus_scrofa\V.Ss.ncbi.fasta -dbtype prot -out V.Ss.prot
+
+
+test command
+
+.\bin\igblastp.exe -germline_db_V .\database\Sus_scrofa\Ss.V.prot.noGaps -domain_system imgt -query .\mismatched_prot.fa -outfmt 3 -out mismatched_prots.blast
