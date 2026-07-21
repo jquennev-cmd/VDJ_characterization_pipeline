@@ -49,7 +49,13 @@ To reduce computation time when running following BLAST analyses, generating a c
   - provides access to ncbi database files using ncbi-db
   - Calls python script make_blastDB.py
     - NOTE: loads BLAST nr database file staticly to "db_fi" variable on line 10. Adjust as needed to point to your BLAST NR file location.
+    - NOTE: species and keywords are staticly defined on lines 11 and 12. Redefine as needed for your use-case.
     - NOTE: outputs static database name, currently set to "nr_Sscrofa_Ig.fasta" on line 22. This is used statically by the next command in make_blastdb.sh. Adjust as preffered. [OTHER SCRIPTS THAT USE THE DB FILE]
 ### Main step: construct synthetic genome
 - run syn_genome_generator.sh
-- 
+- requires sample.txt file
+- calls contig_synGenome_generator_v2.py script
+  - NOTE: contig_synGenome_generator_v2.py requires manual update for BLAST db file. This is on line 14, "blast_db_fi" variable. Update if BLAST db file was changed.
+  - NOTE: contig_synGenome_generator_v2.py contains static variables for defining intended contig size and size threshold variables, defined on lines 16 and 17. Update as needed for your use-case.
+  - NOTE: synthetic genome root name is defined in syn_genome_generator.sh as the last variable in the contig_synGenome_generator_v2.py call (currently "newSamples"). Update as preferred.
+- Outputs a synthetic genome fasta file and a genome annotation (gff) file. 
