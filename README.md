@@ -41,7 +41,7 @@ For questions, feel free to reach out at: jquennev@gmail.com
 - run spades.slurm
   - runs SPADes as a 7 job array, 16 CPUs and 40G of RAM per job. These resources are more than sufficient for all processed samples, with only high-diversity samples requiring >10G RAM. Adjust as needed.
 
-## Step 4: Generate synthetic genome.
+## Step 4: Generate synthetic genome
 ### Preparation step: Generate custom BLAST database
 To reduce computation time when running following BLAST analyses, generating a custom BLAST database containing only your species & keywords (example: "antibody", "IGH", "immunoglobin", etc...) will significantly reduce computation times. Only needs to be run once per species and keyword pairing.
 - run make_blastDB.sh
