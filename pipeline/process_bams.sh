@@ -9,8 +9,8 @@ date
 
 module load Biopython
 
-samples=('./coverage/67_0dpi_S4_newSamples+originalSamples.coverage' './coverage/68_0dpi_S8_newSamples+originalSamples.coverage' './coverage/68_14dpi_S7_newSamples+originalSamples.coverage' './coverage/68_21dpi_S27_newSamples+originalSamples.coverage' './coverage/68_7dpi_S28_newSamples+originalSamples.coverage' './coverage/77_0dpc_S17_newSamples+originalSamples.coverage' './coverage/77_7dpc_S35_newSamples+originalSamples.coverage')
-genome='SPAdes_contigSynGen_mergedSamples.gff'
+samples=(INSERT SAMPLE FILE PATHS HERE)
+genome=[INSERT GENOME ANNOTATION FILE NAME HERE]
 
 echo "${samples[@]}"
 
