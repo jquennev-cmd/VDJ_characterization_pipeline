@@ -12,7 +12,9 @@ import subprocess
 
 # define custom blast database file location
 blast_db_fi='nr_Sscrofa_Ig.fasta'
-
+# contig size and size variability threshold variables
+intended_product_size = 361 # update as needed
+size_threshold = 0.4 # update as needed
 # processes trinity output rather than inchworm
 di = 'spades_'
 
@@ -20,8 +22,7 @@ fis = sys.argv[1:-1]
 out_fi_name = sys.argv[-1]
 print('processing:', fis)
 print('outputting to:', out_fi_name)
-intended_product_size = 361 # update as needed
-size_threshold = 0.4 # update as needed
+
 min_prod_size = intended_product_size*(1-size_threshold)
 max_prod_size = intended_product_size*(1+size_threshold)
 seqs = {}
@@ -149,9 +150,6 @@ def sliding_window(s, n):
     for i in range(len(s)-n+1):
         out.append(s[i:i+n])
     return set(out)
-#x = sliding_window('gaggtgaagctggtggagtctggaggaggcctggtgcagcctggggggtctctgagactctcctgtgtcggctctggattcaccttcagtagtacctacattaactgggtccgccaggctccagggaaggggctggagtggctggcagctattagtactagtggtggtagcacctactacgcagactctgtgaagggccgattcaccatctccagagacgactcccagaacacggcctatctgcaaatgaacagcctgagaaccgaagacacggcccgctattactgtgcaacagggaattgctatagctatggtgctagttgctatagtgacgccatggctacttagattcgtggggccagggcatcctggtcaccgtctcctcag', 20)
-# for e in x:
-#     print(e)
 
 def gen_kmers(seqs, n):
     print('generating all sample kmers')
