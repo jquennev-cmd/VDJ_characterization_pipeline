@@ -2,11 +2,14 @@ import pandas as pd
 import sys
 
 
-samples = ['67_0dpi_S4_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '68_0dpi_S8_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '68_14dpi_S7_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '68_21dpi_S27_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '68_7dpi_S28_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '77_0dpc_S17_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '77_7dpc_S35_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts']
 
 sample_dir=sys.argv[1]
-# samples=sys.argv[2:]
-genome_header='SPAdes_contigSynGen_'
+genome_header=sys.argv[2]
+samples=sys.argv[3:]
+
+# test variables
+# samples = ['67_0dpi_S4_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '68_0dpi_S8_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '68_14dpi_S7_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '68_21dpi_S27_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '68_7dpi_S28_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '77_0dpc_S17_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts', '77_7dpc_S35_newSamples+originalSamples.sorted_SPAdes_contigSynGen_mergedSamples.readCounts']
+# genome_header='SPAdes_contigSynGen_'
 
 df = pd.read_csv('contig_coverage.csv')
 
