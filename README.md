@@ -2,7 +2,7 @@
 Pipeline for generating VDJ sequences from NGS data in any species. Best run on a dedicated compute cluster. 
 
 ## Required softwares:
-  ###Stand-alone tools:
+  ### Stand-alone tools:
    - fastQC (v 0.12.1): used for verifying read qualities.
    - Trimmomatic (v 0.40): used for removing low-qaulity reads and adaptor sequences
    - SPADes (v 3.15.5 requires Python-3.7.2): used for generating kmer contigs from trimmed reads
@@ -12,6 +12,6 @@ Pipeline for generating VDJ sequences from NGS data in any species. Best run on 
    - SAMtools (v 1.9): used for bam file manipulation
    - Subread (v 2.0.4): used in VDJ contig expression quantification
    - Python (v3.10): used for synthetic genome construction, contig expression quantification, other custom scripts 
-   -- Biopython (v1.76)
-   -- Pandas (v2.2.0)
+     - Biopython (v1.76)
+     - Pandas (v2.2.0)
     
